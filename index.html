@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konser</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big&display=swap" rel="stylesheet">
+    <style>
+        .bodys {
+            font-family: "Radio Canada Big", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+        }
+        body {
+            background-color: #fa4040;
+            margin: 0; /* Reset default margin */
+            padding: 0; /* Reset default padding */
+            font-family: "Radio Canada Big", sans-serif;
+        }
+        .ustyazi {
+            background-color: #ff6161;
+            overflow: hidden;
+        }
+        .ustyazi h2 {
+            color: #fafafa;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 20px;
+            margin: 0; /* Reset default margin */
+        }
+        .ortayazi {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+        .ortayazi h1 {
+            margin: 0; /* Reset default margin */
+        }
+        .ortayazi a {
+            text-decoration: none;
+            color: white;
+            font-size: 30px;
+            display: block;
+            margin-top: 20px;
+        }
+        #pdfContainer {
+            display: none;
+            width: 80%;
+            height: 80%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 10px;
+            z-index: 9999;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        .backButton {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #ff6161;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #pdfViewer {
+            width: 100%;
+            height: calc(100% - 60px); /* Adjust height for the back button */
+            border-radius: 0 0 10px 10px;
+        }
+        #mapContainer {
+            display: none;
+            width: 80%;
+            height: 80%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 10px;
+            z-index: 9999;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        .mapCloseButton {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #ff6161;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #map {
+            width: 100%;
+            height: calc(100% - 60px); /* Adjust height for the close button */
+            border-radius: 0 0 10px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ustyazi">
+        <h2>İzlem Özdeğirmenci Bayraktar’ın Piyano ve Keman Öğrencileri</h2>
+    </div>
+    <div class="ortayazi">
+        <h1>Piyano ve Keman Konserine'ne Hoşgeldiniz</h1>
+        <a href="#" onclick="openPdf('Konser Afisi_2024 (1).pdf')">Broşür</a>
+        <a href="recieve.html">Canlı Akış</a>
+        <a href="#" onclick="openMap()">Haritada Göster</a>
+    </div>
+    <footer style='background-color: #ff6161; padding: 10px; text-align: center; position: absolute; top:90%; width:100%; font-family:"Jacquard 12", system-ui; font-size: 20px;'>
+        <p>&copy; <span id="currentYear"></span> Ozan Kaygusuz All rights reserved.</p>
+    </footer>
+
+    <!-- PDF Container -->
+    <div id="pdfContainer">
+        <button class="backButton" onclick="closePdf()">Back</button>
+        <iframe id="pdfViewer" src="" frameborder="0"></iframe>
+    </div>
+
+    <!-- Map Container -->
+    <div id="mapContainer">
+        <button class="mapCloseButton" onclick="closeMap()">Geri Dön</button>
+        <iframe id="map" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        function openPdf(pdfUrl) {
+            // Display the PDF container
+            document.getElementById('pdfContainer').style.display = 'block';
+            // Set the PDF URL
+            document.getElementById('pdfViewer').src = pdfUrl;
+        }
+
+        function closePdf() {
+            // Hide the PDF container
+            document.getElementById('pdfContainer').style.display = 'none';
+            // Clear the PDF URL
+            document.getElementById('pdfViewer').src = '';
+        }
+
+        function openMap() {
+            // Display the map container
+            document.getElementById('mapContainer').style.display = 'block';
+            // Set the Google Maps URL with the specified coordinates
+            document.getElementById('map').src = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12035.064606282165!2d29.379931!3d40.892195!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDUzJzMxLjkiTiAyOcKwMjInNDcuNyJF!5e0!3m2!1sen!2sus!4v1685748934984!5m2!1sen!2sus";
+        }
+
+        function closeMap() {
+            // Hide the map container
+            document.getElementById('mapContainer').style.display = 'none';
+            // Clear the map URL
+            document.getElementById('map').src = '';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update the year in the footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
